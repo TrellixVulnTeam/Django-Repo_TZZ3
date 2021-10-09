@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Project
-
+from .forms import ProjectForm
 
 def projects(request):
     projects = Project.objects.all()
@@ -16,5 +16,6 @@ def project(request,pk):
 
 
 def createProject(request):
-    context = {}
+    form = ProjectForm()
+    context = {'form':form}
     return render(request, "projects/project_form.html", context)
